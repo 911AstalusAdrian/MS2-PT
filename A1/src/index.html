@@ -1,60 +1,131 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./output.css" rel="stylesheet">
-</head>
-<body>
-    <div class="grid grid-cols-10 gap-2">
-        <div class="bg-sky-50 aspect-square"></div>
-        <div class="bg-sky-100 aspect-square"></div>
-        <div class="bg-sky-200 aspect-square"></div>
-        <div class="bg-sky-300 aspect-square"></div>
-        <div class="bg-sky-400 aspect-square"></div>
-        <div class="bg-sky-500 aspect-square"></div>
-        <div class="bg-sky-600 aspect-square"></div>
-        <div class="bg-sky-700 aspect-square"></div>
-        <div class="bg-sky-800 aspect-square"></div>
-        <div class="bg-sky-900 aspect-square"></div>
-      </div>
-      <div class="grid grid-cols-10 gap-2">
-        <div class="bg-blue-50 aspect-square"></div>
-        <div class="bg-blue-100 aspect-square"></div>
-        <div class="bg-blue-200 aspect-square"></div>
-        <div class="bg-blue-300 aspect-square"></div>
-        <div class="bg-blue-400 aspect-square"></div>
-        <div class="bg-blue-500 aspect-square"></div>
-        <div class="bg-blue-600 aspect-square"></div>
-        <div class="bg-blue-700 aspect-square"></div>
-        <div class="bg-blue-800 aspect-square"></div>
-        <div class="bg-blue-900 aspect-square"></div>
-      </div>
-      <div class="grid grid-cols-10 gap-2">
-        <div class="bg-indigo-50 aspect-square"></div>
-        <div class="bg-indigo-100 aspect-square"></div>
-        <div class="bg-indigo-200 aspect-square"></div>
-        <div class="bg-indigo-300 aspect-square"></div>
-        <div class="bg-indigo-400 aspect-square"></div>
-        <div class="bg-indigo-500 aspect-square"></div>
-        <div class="bg-indigo-600 aspect-square"></div>
-        <div class="bg-indigo-700 aspect-square"></div>
-        <div class="bg-indigo-800 aspect-square"></div>
-        <div class="bg-indigo-900 aspect-square"></div>
-      </div>
-      <div class="grid grid-cols-10 gap-2">
-        <div class="bg-red-50 aspect-square"></div>
-        <div class="bg-red-100 aspect-square"></div>
-        <div class="bg-red-200 aspect-square"></div>
-        <div class="bg-red-300 aspect-square"></div>
-        <div class="bg-red-400 aspect-square"></div>
-        <div class="bg-red-500 aspect-square"></div>
-        <div class="bg-red-600 aspect-square"></div>
-        <div class="bg-red-700 aspect-square"></div>
-        <div class="bg-red-800 aspect-square"></div>
-        <div class="bg-red-900 aspect-square"></div>
-      </div>
-      
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap" rel="stylesheet"/>
+    <link href="./output.css" rel="stylesheet" />
+    <script src="scripts.js"></script>
+    <script>fetchPersonalData()</script>
+  </head>
+  <body>
+  <!-- Horizontal navigation -->
+    <nav class="flex justify-between p-2 text-xl bg-dark-green text-cream sticky">
+    <h2 class="px-10 py-2 text-3xl">My webpage</h2>
+    <ul class = "flex m-4">
+      <li><a href="#" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">Home</a></li>
+      <li><a href="#" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"">About</a></li>
+      <li><a href="#" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"">Services</a></li>
+      <li><a href="#" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"">Contact</a></li>
+    </ul>
+  </nav>
 
-</body>
+  <!-- Sections -->
+  <!-- Personal info section -->
+  <section class="bg-lighter-green text-cream py-10 grid grid-cols-2">
+
+    <div class="p-6 flex flex-col items-center">
+      <h2 class="text-3xl mb-4">About Me</h2>
+      <img src="img/me.jpg" alt="Profile Picture" class="rounded-full w-72 h-72  object-cover" />
+    </div>
+    
+    <div class="p-6">
+      <p class="text-lg mb-4" id="name">Hello! My name is </p>
+      <p class="text-lg mb-4">Hi, I'm John Doe. I'm a web developer with a passion for creating beautiful and functional websites.</p>
+      <p class="text-lg mb-4">I have experience in HTML, CSS, and JavaScript, and I'm always eager to learn new technologies.</p>
+      <p class="text-lg mb-4">In my free time, I enjoy hiking, playing guitar, and experimenting with new coding projects.</p>
+      <p class="text-lg mb-4">Feel free to contact me if you have any questions or if you'd like to collaborate on a project.</p>
+      <a href="mailto:astal" class="text-xl bg-dark-green text-cream px-6 py-3 rounded-full hover:bg-sage">Contact Me</a>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="bg-lighter-green text-cream py-10">
+    <div class="container mx-auto">
+      <h2 class="text-3xl mb-6">Experience & Education</h2>
+
+      <div class="grid grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl mb-4">Work Experience</h3>
+          <ul class="list-disc ml-6">
+            <li>
+              <h4 class="font-bold">Company A</h4>
+              <p class="text-lg">Position: Web Developer</p>
+              <p class="text-lg">Duration: 2018 - Present</p>
+              <p class="text-lg">Responsibilities:</p>
+              <ul class="list-disc ml-6">
+                <li>Developing and maintaining company websites</li>
+                <li>Collaborating with cross-functional teams</li>
+                <li>Implementing new features and functionality</li>
+              </ul>
+            </li>
+            <li>
+              <h4 class="font-bold">Company B</h4>
+              <p class="text-lg">Position: Frontend Developer</p>
+              <p class="text-lg">Duration: 2015 - 2018</p>
+              <p class="text-lg">Responsibilities:</p>
+              <ul class="list-disc ml-6">
+                <li>Creating responsive web designs</li>
+                <li>Optimizing website performance</li>
+                <li>Testing and debugging code</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl mb-4">Education</h3>
+          <ul class="list-disc ml-6">
+            <li>
+              <h4 class="font-bold">University A</h4>
+              <p class="text-lg">Degree: Bachelor of Science in Computer Science</p>
+              <p class="text-lg">Duration: 2011 - 2015</p>
+            </li>
+            <li>
+              <h4 class="font-bold">University B</h4>
+              <p class="text-lg">Degree: Master of Science in Software Engineering</p>
+              <p class="text-lg">Duration: 2015 - 2017</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  
+  <section class="bg-lighter-green text-cream py-10">
+    <div class="container mx-auto">
+      <h2 class="text-3xl mb-6">Passions & Hobbies</h2>
+
+      <div class="grid grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl mb-4">Hiking</h3>
+          <p class="text-lg mb-4">I love exploring the great outdoors and going on hiking adventures. It's a great way to stay active and connect with nature.</p>
+          <img src="img/hiking.jpg" alt="Hiking" class="rounded-lg w-full" />
+        </div>
+
+        <div>
+          <h3 class="text-xl mb-4">Playing Guitar</h3>
+          <p class="text-lg mb-4">Music is my passion, and playing the guitar is one of my favorite ways to express myself. I enjoy learning new songs and experimenting with different styles.</p>
+          <img src="img/guitar.jpg" alt="Playing Guitar" class="rounded-lg w-full" />
+        </div>
+
+        <div>
+          <h3 class="text-xl mb-4">Coding Projects</h3>
+          <p class="text-lg mb-4">In addition to web development, I also enjoy working on personal coding projects. It allows me to explore new technologies and expand my skills.</p>
+          <img src="img/coding.jpg" alt="Coding Projects" class="rounded-lg w-full" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  </body>
 </html>
+
+

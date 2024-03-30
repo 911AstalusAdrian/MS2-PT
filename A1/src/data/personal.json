@@ -1,0 +1,36 @@
+{
+    "name": "Adrian Astalus",
+    "age": 30,
+    "gender": "male",
+    "address": {
+        "street": "123 Main St",
+        "city": "New York",
+        "state": "NY",
+        "zip": "10001"
+    },
+    "contact": {
+        "email": "johndoe@example.com",
+        "phone": "123-456-7890"
+    },
+    "education": [
+        {
+            "degree": "Bachelor's",
+            "major": "Computer Science",
+            "university": "University of XYZ",
+            "year": 2015
+        },
+        {
+            "degree": "Master's",
+            "major": "Software Engineering",
+            "university": "University of ABC",
+            "year": 2017
+        }
+    ],
+    "skills": [
+        "Java",
+        "Python",
+        "JavaScript",
+        "HTML",
+        "CSS"
+    ]
+}

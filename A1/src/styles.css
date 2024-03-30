@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+.navbar-item {
+    margin-right: 10px;
+}
+
+.navbar-item:last-child {
+    margin-right: 0;
+} */
