@@ -1,5 +1,33 @@
 {
-    "name": "Adrian Astalus",
+    "personal": {
+        "name": "Adrian Astalus",
+        "dateOfBirth": "March 17th 2002",
+        "placeOfBirth": "Ludus, Mures County",
+        "currentlyLivingIn": "Cluj-Napoca",
+        "address": {
+            "street": "Str. Dambovitei nr. 15",
+            "city": "Cluj-Napoca",
+            "state": "Cluj",
+            "zip": "400584"
+        }
+        },
+
+    "education": [
+        {
+            "degree": "High School",
+            "major": "Mathematics and Computer Science",
+            "institution": "Mihai Eminescu National College",
+            "year": 2020
+        },
+        {
+            "degree": "Bachelor's",
+            "major": "Computer Science",
+            "university": "Babeș-Bolyai University",
+            "year": 2024
+        }
+    ],
+
+
     "age": 30,
     "gender": "male",
     "address": {
@@ -12,20 +40,7 @@
         "email": "johndoe@example.com",
         "phone": "123-456-7890"
     },
-    "education": [
-        {
-            "degree": "Bachelor's",
-            "major": "Computer Science",
-            "university": "University of XYZ",
-            "year": 2015
-        },
-        {
-            "degree": "Master's",
-            "major": "Software Engineering",
-            "university": "University of ABC",
-            "year": 2017
-        }
-    ],
+
     "skills": [
         "Java",
         "Python",
