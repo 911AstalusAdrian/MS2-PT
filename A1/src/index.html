@@ -9,28 +9,24 @@
     <link href="./output.css" rel="stylesheet" />
     <script src="scripts.js"></script>
     <script>
-      fetchPersonalData()
-      instaButton = document.getElementById('instaButton')
-      instaButton.addEventListener('click', function() {
-        visitInstagram();
-      });
+      initData();
     </script>
   </head>
   <body>
   <!-- Horizontal navigation -->
-    <nav class="flex justify-between p-2 text-xl bg-dark-green text-cream fixed  w-full top-0 left-0">
+    <nav class="flex justify-between p-2 text-xl bg-dark-green text-cream">
     <h2 class="px-10 py-2 text-3xl">My webpage</h2>
     <ul class = "flex m-4">
       <li><a href="#" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl">Home</a></li>
-      <li><a href="#about" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl">About</a></li>
-      <li><a href="#experience" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl">Services</a></li>
-      <li><a href="#hobbies" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl">Contact</a></li>
+      <li><a href="#about" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl">About Me</a></li>
+      <li><a href="#experience" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl">Work & Education</a></li>
+      <li><a href="#hobbies" class="px-10 py-2 hover:text-black hover:bg-sage rounded-2xl">Passions & Hobbies</a></li>
     </ul>
   </nav>
 
   <!-- Sections -->
   <!-- Personal info section -->
-  <section id='about' class="bg-lighter-green text-cream py-10 mt-20 grid grid-cols-2">
+  <section id='about' class="bg-lighter-green text-cream py-10 grid grid-cols-2">
 
     <div class="p-6 flex flex-col items-center">
       <h2 class="text-3xl mb-4">About Me</h2>
@@ -94,29 +90,7 @@
             </svg>
           </h2>
           <div id="workExperience" class="hidden">
-            <ul class="list-disc ml-6">
-              <li>
-                <h4 class="font-bold">Company A</h4>
-                <p class="text-lg">Position: Web Developer</p>
-                <p class="text-lg">Duration: 2018 - Present</p>
-                <p class="text-lg">Responsibilities:</p>
-                <ul class="list-disc ml-6">
-                  <li>Developing and maintaining company websites</li>
-                  <li>Collaborating with cross-functional teams</li>
-                  <li>Implementing new features and functionality</li>
-                </ul>
-              </li>
-              <li>
-                <h4 class="font-bold">Company B</h4>
-                <p class="text-lg">Position: Frontend Developer</p>
-                <p class="text-lg">Duration: 2015 - 2018</p>
-                <p class="text-lg">Responsibilities:</p>
-                <ul class="list-disc ml-6">
-                  <li>Creating responsive web designs</li>
-                  <li>Optimizing website performance</li>
-                  <li>Testing and debugging code</li>
-                </ul>
-              </li>
+            <ul id="workExperienceList" class="list-disc ml-6">
             </ul>
           </div>  
         </div>
@@ -131,17 +105,7 @@
           </h2>
           <!-- Education dropdown div-->
           <div id="education" class="hidden">
-            <ul class="list-disc ml-6">
-              <li>
-                <h4 class="font-bold">University A</h4>
-                <p class="text-lg">Degree: Bachelor of Science in Computer Science</p>
-                <p class="text-lg">Duration: 2011 - 2015</p>
-              </li>
-              <li>
-                <h4 class="font-bold">University B</h4>
-                <p class="text-lg">Degree: Master of Science in Software Engineering</p>
-                <p class="text-lg">Duration: 2015 - 2017</p>
-              </li>
+            <ul id="educationList" class="list-disc ml-6">
             </ul>
           </div>
         </div>
@@ -158,22 +122,19 @@
       <h2 class="text-3xl mb-6">Passions & Hobbies</h2>
 
       <div class="grid grid-cols-3 gap-8">
-        <div class="group">
+        <div class="group flex flex-col items-center">
           <h3 class="text-xl mb-4">Hiking</h3>
-          <p class="text-lg mb-4">I love exploring the great outdoors and going on hiking adventures. It's a great way to stay active and connect with nature. sadiasdhasihdiuwhduhwufhsudfhusbfisdhfhj</p>
-          <img src="img/hiking.jpg" alt="Hiking" class="rounded-full w-72 h-72 object-cover transition duration-300 ease-in-out hover:scale-125 group-hover:filter-none filter grayscale" />
+          <img src="img/hiking.jpg" alt="Hiking" class="rounded-full w-72 h-72 object-cover transition duration-300 ease-in-out hover:scale-150 group-hover:filter-none filter grayscale" />
         </div>
 
-        <div class="group">
-          <h3 class="text-xl mb-4">Playing Guitar</h3>
-          <p class="text-lg mb-4">Music is my passion, and playing the guitar is one of my favorite ways to express myself. I enjoy learning new songs and experimenting with different styles.</p>
-          <img src="img/hiking.jpg" alt="Playing Guitar" class="rounded-full w-72 h-72 object-cover transition duration-300 ease-in-out hover:scale-125 group-hover:filter-none filter grayscale" />
+        <div class="group flex flex-col items-center">
+          <h3 class="text-xl mb-4">Video Games</h3>
+          <img src="img/apex.png" alt="Video Games" class="rounded-full w-72 h-72 object-cover transition duration-300 ease-in-out hover:scale-150 group-hover:filter-none filter grayscale" />
         </div>
 
-        <div class="group">
-          <h3 class="text-xl mb-4">Coding Projects</h3>
-          <p class="text-lg mb-4">In addition to web development, I also enjoy working on personal coding projects. It allows me to explore new technologies and expand my skills.</p>
-          <img src="img/hiking.jpg" alt="Coding Projects" class="rounded-full w-72 h-72 object-cover transition duration-300 ease-in-out hover:scale-125 group-hover:filter-none filter grayscale" />
+        <div class="group flex flex-col items-center">
+          <h3 class="text-xl mb-4">Cooking</h3>
+          <img src="img/cooking.jpg" alt="Cooking" class="rounded-full w-72 h-72 object-cover transition duration-300 ease-in-out hover:scale-150 group-hover:filter-none filter grayscale" />
         </div>
       </div>
     </div>

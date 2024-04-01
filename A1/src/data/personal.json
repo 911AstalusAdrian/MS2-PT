@@ -14,38 +14,31 @@
 
     "education": [
         {
-            "degree": "High School",
-            "major": "Mathematics and Computer Science",
-            "institution": "Mihai Eminescu National College",
-            "year": 2020
+            "degree": "Masters",
+            "major": "Data Science",
+            "institution": "Babeș-Bolyai University",
+            "years": "2023-2025"
         },
         {
             "degree": "Bachelor's",
             "major": "Computer Science",
             "university": "Babeș-Bolyai University",
-            "year": 2024
+            "years": "2020-2023" 
         }
     ],
 
+    "workExperience": [
+        {
+            "company": "Betfair Romania",
+            "position": "Intern QA Data Engineer",
+            "duration": "October 2023 - Present"
+        },
+        {
+            "company": "Wolfpack Digital",
+            "position": "iOS Intern",
+            "duration": "Summer 2022"
+        }
+    ],
 
-    "age": 30,
-    "gender": "male",
-    "address": {
-        "street": "123 Main St",
-        "city": "New York",
-        "state": "NY",
-        "zip": "10001"
-    },
-    "contact": {
-        "email": "johndoe@example.com",
-        "phone": "123-456-7890"
-    },
-
-    "skills": [
-        "Java",
-        "Python",
-        "JavaScript",
-        "HTML",
-        "CSS"
-    ]
+    "hobbies": ""
 }
