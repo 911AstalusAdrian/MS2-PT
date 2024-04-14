@@ -1,0 +1,42 @@
+{
+    "personal": {
+        "name": "Adrian Astalus",
+        "dateOfBirth": "March 17th 2002",
+        "placeOfBirth": "Ludus, Mures County",
+        "currentlyLivingIn": "Cluj-Napoca",
+        "address": {
+            "street": "Str. Dambovitei nr. 15",
+            "city": "Cluj-Napoca",
+            "state": "Cluj",
+            "zip": "400584"
+        }
+        },
+
+    "education": [
+        {
+            "degree": "Masters",
+            "major": "Data Science",
+            "institution": "Babeș-Bolyai University",
+            "years": "2023-2025"
+        },
+        {
+            "degree": "Bachelor's",
+            "major": "Computer Science",
+            "university": "Babeș-Bolyai University",
+            "years": "2020-2023" 
+        }
+    ],
+
+    "workExperience": [
+        {
+            "company": "Betfair Romania",
+            "position": "Intern QA Data Engineer",
+            "duration": "October 2023 - Present"
+        },
+        {
+            "company": "Wolfpack Digital",
+            "position": "iOS Intern",
+            "duration": "Summer 2022"
+        }
+    ]
+}

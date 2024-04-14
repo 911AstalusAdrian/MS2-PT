@@ -1,6 +1,6 @@
 
 function fetchPersonalData() {
-    fetch('data/personal.json')
+    fetch('../data/personal.json')
     .then(response => response.json())
     .then(data => {
         document.getElementById('namePlaceholder').textContent = data['personal'].name;
@@ -13,7 +13,7 @@ function fetchPersonalData() {
 }
 
 function fetchWorkExperience(){
-    fetch('data/personal.json')
+    fetch('../data/personal.json')
     .then(response => response.json())
     .then(data => {
         let workExperience = data['workExperience'];
@@ -46,7 +46,7 @@ function fetchWorkExperience(){
 }
 
 function fetchEducation(){
-    fetch('data/personal.json')
+    fetch('../data/personal.json')
     .then(response => response.json())
     .then(data => {
         let education = data['education'];
