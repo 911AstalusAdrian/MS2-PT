@@ -82,22 +82,21 @@ document.addEventListener("DOMContentLoaded", function() {
 //     })
 // }
 
-function fetchPersonalData() {
-    fetch('http://127.0.0.1:5000/about', {mode: 'no-cors'})
+function fetchHobbies() {
+    fetch('http://127.0.0.1:5000/hobbies', {mode: 'no-cors'})
     .then(response => response.json())
     .then(data => {
         console.log(data);
     })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    .catch(error => console.error('Error:', error));
 }
 
 
 function initData(){
-    fetchPersonalData();
+    // fetchPersonalData();
     // fetchWorkExperience();
     // fetchEducation();
+    fetchHobbies();
 }
 
 

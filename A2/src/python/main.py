@@ -121,10 +121,16 @@ def get_education():
     
 @app.route('/hobbies')
 def get_hobbies():
+    hobbies = []
     with sqlite3.connect('personal.db') as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM hobbies')
-        hobbies = cursor.fetchall()
+        db_hobbies = cursor.fetchall()
+        for hobby in db_hobbies:
+            json_hobby = {}
+            json_hobby['id'] = hobby[0]
+            json_hobby['hobby'] = hobby[1]
+            hobbies.append(json_hobby)
         return hobbies
 
 if __name__ == '__main__':
