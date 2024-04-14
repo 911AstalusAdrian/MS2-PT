@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
-    <link rel="stylesheet" href="../css/output.css">
+    <!-- <link rel="stylesheet" href="../css/output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap" rel="stylesheet"/>
-    <script src="../scripts/scripts.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap" rel="stylesheet"/> -->
+    <!-- <script src="../scripts/scripts.js"></script> -->
+    <link rel="stylesheet" href="output.css">
+    <script src="{{ url_for('static', filename='../scripts/scripts.js') }}"></script>
     <script>
       initData();
     </script>
@@ -33,7 +35,7 @@
   
       <div class="p-6 flex flex-col items-center">
         <h2 class="text-3xl mb-4">About Me</h2>
-        <img src="../img/me.jpg" alt="Profile Picture" class="rounded-full w-72 h-72 object-cover animate-spin hover:animate-none" />
+        <img src="{{url_for('static', filename='../img/me.jpg')}}" alt="Profile Picture" class="rounded-full w-72 h-72 object-cover animate-spin hover:animate-none" />
         
       </div>
       
