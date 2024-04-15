@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
+from flask_cors import CORS
 import sqlite3
 import json
 
@@ -6,6 +7,7 @@ import json
 connect = sqlite3.connect('personal.db')
 conn = connect.cursor()
 app = Flask(__name__, template_folder='../html')
+CORS(app)
 
 # Create 'About' table
 conn.execute(
@@ -98,26 +100,27 @@ def get_about():
     with sqlite3.connect('personal.db') as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM about')
-        about = cursor.fetchall()
-        # print(about)
-        # return json.dumps(about)
-        return about
+        rows = cursor.fetchall()
+        result = [{'id': row[0], 'name': row[1], 'dateOfBirth': row[2], 'placeOfBirth': row[3], 'currentCity': row[4], 'addressStreet': row[5], 'addressCity': row[6], 'addressState': row[7], 'addressZip': row[8]} for row in rows]
+        return json.dumps(result)
 
 @app.route('/work')
 def get_work():
     with sqlite3.connect('personal.db') as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM work')
-        work = cursor.fetchall()
-        return work
+        rows = cursor.fetchall()
+        result = [{'id': row[0], 'company': row[1], 'position': row[2], 'start_date': row[3], 'end_date': row[4]} for row in rows]
+        return json.dumps(result)
     
 @app.route('/education')
 def get_education():
     with sqlite3.connect('personal.db') as connection:
         cursor = connection.cursor()
         cursor.execute('SELECT * FROM education')
-        education = cursor.fetchall()
-        return education
+        rows = cursor.fetchall()
+        result = [{'id': row[0], 'institution': row[1], 'degree': row[2], 'major': row[3], 'start_date': row[4], 'end_date': row[5]} for row in rows]
+        return json.dumps(result)
     
 @app.route('/hobbies')
 def get_hobbies():
