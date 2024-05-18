@@ -12,27 +12,27 @@ def home():
 
 @app.route('/shape')
 def shape():
-    result = {}
-    rows,cols = model.get_shape()
-    result['rows'] = rows
-    result['columns'] = cols
-    return result
+    return model.get_shape()
 
 @app.route('/columns')
 def columns():
-    return 'Hello, columns!'
+    return model.get_column_details()
+    # return 'Hello, columns!'
 
 @app.route('/first')
 def first():
-    return 'Hello, first!'
+    return model.get_firstN(5)
+    # return 'Hello, first!'
 
 @app.route('/last')
 def last():
-    return 'Hello, last!'
+    return model.get_lastN(5)
+    # return 'Hello, last!'
 
 @app.route('/info')
 def info():
-    return 'Hello, info!'
+    return model.get_statistics()
+    # return 'Hello, info!'
 
 @app.route('/predict')
 def predict():
