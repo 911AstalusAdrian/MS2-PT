@@ -1,14 +1,22 @@
 from flask import Flask, request, jsonify
+from model import Model
 
 app = Flask(__name__)
+model = Model()
+
 
 @app.route('/')
 def home():
-    return 'Hello, Home!'
+    var = model.compute()
+    return f'Hello, {var}!'
 
 @app.route('/shape')
 def shape():
-    return 'Hello, shape!'
+    result = {}
+    rows,cols = model.get_shape()
+    result['rows'] = rows
+    result['columns'] = cols
+    return result
 
 @app.route('/columns')
 def columns():
