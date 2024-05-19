@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 
 
 def load_data():
-    return pd.read_csv('../dataset.csv')
+    return pd.read_csv('../../dataset.csv')
 
 class Model:
     def __init__(self):
