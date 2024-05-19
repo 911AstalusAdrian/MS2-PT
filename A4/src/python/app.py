@@ -40,5 +40,6 @@ def info():
 
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
-    return model.predict(2)
+    gdpValues = request.json['gdpValues']
+    return model.predict(gdpValues)
     # return 'Hello, predict!'

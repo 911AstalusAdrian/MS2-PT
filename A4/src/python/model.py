@@ -46,4 +46,11 @@ class Model:
         return 2
 
     def predict(self, GDPArray):
-        return {'A': 2}
+        years = list(range(1999, 2022))
+        years.remove(2011)
+        df = pd.DataFrame([GDPArray], columns=years)
+        
+        prediction = self.__model.predict(df)
+        print(prediction[0])
+
+        return {'prediction': prediction[0]}
