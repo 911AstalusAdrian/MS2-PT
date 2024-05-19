@@ -38,6 +38,7 @@ def info():
     return model.get_statistics()
     # return 'Hello, info!'
 
-@app.route('/predict')
+@app.route('/predict', methods=['POST', 'GET'])
 def predict():
-    return 'Hello, predict!'
+    return model.predict(2)
+    # return 'Hello, predict!'

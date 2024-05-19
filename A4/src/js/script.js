@@ -26,9 +26,6 @@ function changeTable(buttonIndex) {
         case 4:
             apiUrl = 'http://127.0.0.1:5000/info';
             break;
-        case 5:
-            apiUrl = 'http://127.0.0.1:5000/predict';
-            break;
         default:
             tableContainer.innerHTML = 'No data available';
             return;
@@ -92,23 +89,8 @@ function changeTable(buttonIndex) {
                 }
                 tableHTML += header;
                 tableHTML += rows;
+                break;
         }
-
-        // if (buttonIndex === 0 || buttonIndex === 1) {
-        //     // tableHTML += '<tr><th>Rows</th><th>Columns</th></tr>';
-        //     // tableHTML += '<tr><td class="border px-4 py-2">' + data.rows + '</td><td class="border px-4 py-2">' + data.columns + '</td></tr>';
-        // } else {
-        //     data.forEach((item, index) => {
-        //         if (index < 20) {
-        //             tableHTML += '<tr>';
-        //             for (const key in item) {
-        //                 tableHTML += '<td class="border px-4 py-2">' + item[key] + '</td>';
-        //             }
-        //             tableHTML += '</tr>';
-        //         }
-        //     });
-        // }
-        
         tableHTML += '</table>';
         tableContainer.innerHTML = tableHTML;
     })
@@ -116,4 +98,33 @@ function changeTable(buttonIndex) {
         console.error('Error fetching data:', error);
         tableContainer.innerHTML = 'Error loading data';
     });
+}
+
+
+function showPredictor(){
+    const tableContainer = document.getElementById('table-container');
+    tableContainer.innerHTML = '';
+    let predictorHTML = '\
+    <div class="input-container flex items-center mb-6">\
+        <input type="text" id="gdpInput" class="input-field py-2 px-4 border border-gray-300 rounded mr-2" placeholder="Enter GDP values separated by commas">\
+        <button id="predictButton" class="predict-button py-2 px-4 bg-blue-500 text-white font-semibold rounded" onclick="predictGDP()">Predict</button>\
+    </div>\
+    <div class="result-box w-64 h-16 flex items-center justify-center border border-gray-300 rounded">\
+        <span id="resultText" class="result-text"></span>\
+    </div>';
+    tableContainer.innerHTML = predictorHTML;
+}
+
+function predictGDP() {
+    let apiURL = 'http://127.0.0.1:5000/predict';
+
+    fetch(apiURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'year': document.getElementById('year').value
+        })
+    })
 }

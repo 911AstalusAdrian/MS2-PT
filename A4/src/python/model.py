@@ -12,6 +12,10 @@ class Model:
     def __init__(self):
         self.__model = LinearRegression()
         self.__data = load_data()
+        self.__modelData = load_data()
+        self.__y = self.__data['2022']
+        self.__X = self.__modelData.drop(columns=['Country', '2022'])
+        self.__model.fit(self.__X, self.__y)
 
     def get_shape(self):
         shape = self.__data.shape
@@ -40,3 +44,6 @@ class Model:
 
     def compute(self):
         return 2
+
+    def predict(self, GDPArray):
+        return {'A': 2}
