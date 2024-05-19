@@ -5,6 +5,7 @@ function changeTable(buttonIndex) {
 
     let firstN = document.getElementById('first-n').value || 5;
     let lastN = document.getElementById('last-n').value || 5;
+    let rows = '';
 
     let apiURL;
     switch (buttonIndex) {
@@ -37,7 +38,7 @@ function changeTable(buttonIndex) {
     fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-        console.log('Data:', data);
+        // console.log('Data:', data);
         let tableHTML = '<table class="table-auto w-full border-collapse border border-gray-400 ">';
         
 
@@ -58,7 +59,7 @@ function changeTable(buttonIndex) {
             case 3:
                 countries = data.Country;
                 let headers = '<tr><th>Year</th>';
-                let rows = '';
+                rows = '';
 
                 for (index in countries){
                     headers += '<th>' + countries[index] + '</th>';
@@ -68,7 +69,6 @@ function changeTable(buttonIndex) {
                     if (index != 'Country'){
                         row = '<tr class="border-2"><td class="border text-center">' + index + '</td>'
                         values = data[index];
-                        console.log(values)
                         for (index in values){
                             row += '<td class="border text-center">' + values[index] + '</td>';
                         }
@@ -80,6 +80,18 @@ function changeTable(buttonIndex) {
                 tableHTML += headers;
                 tableHTML += rows;
                 break;
+            case 4:
+                header = '<tr class="border-2"><th>Column</th><th>Count</th><th>Unique</th><th>Top</th><th>Frequency</th></tr>';
+                rows = '';
+                for (index in data) {
+                    rows += '<tr><td class="border text-center">' + index + '</td>'
+                    values = data[index]
+                    for (value_key in values) {
+                        rows += '<td class="border text-center">' + values[value_key] + '</td>';
+                    }
+                }
+                tableHTML += header;
+                tableHTML += rows;
         }
 
         // if (buttonIndex === 0 || buttonIndex === 1) {
