@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 from model import Model
 
@@ -21,14 +21,16 @@ def columns():
     return model.get_column_details()
     # return 'Hello, columns!'
 
-@app.route('/first')
+@app.route('/first', methods=['GET'])
 def first():
-    return model.get_firstN(5)
+    n = int(request.args.get('n', 5))
+    return model.get_firstN(n)
     # return 'Hello, first!'
 
-@app.route('/last')
+@app.route('/last', methods=['GET'])
 def last():
-    return model.get_lastN(5)
+    n = int(request.args.get('n', 5))
+    return model.get_lastN(n)
     # return 'Hello, last!'
 
 @app.route('/info')

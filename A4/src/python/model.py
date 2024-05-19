@@ -18,9 +18,13 @@ class Model:
         return json.dumps({'rows': shape[0], 'columns': shape[1]})
     
     def get_column_details(self):
-        details = self.__data.dtypes
-        dtypes_dict = details.apply(lambda x: x.name).to_dict()
-        return json.dumps(dtypes_dict)
+        columns = self.__data.columns
+        type = self.__data.dtypes.astype(str).tolist()
+        details = {
+            'Columns': columns.tolist(),
+            'Type': type
+        }
+        return details
     
     def get_firstN(self, n):
         firstN = self.__data.head(n)

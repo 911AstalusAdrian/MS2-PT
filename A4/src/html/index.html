@@ -4,37 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../css/output.css" rel="stylesheet">
-  <script src="../js/script.js"></script>
 </head>
 <body class="bg-gray-100 p-8">
-    <div class="flex space-x-4 mb-8">
-        <div class="text-center">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(0)">Button 1</button>
-            <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 1">
-        </div>
-        <div class="text-center">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(1)">Button 2</button>
-            <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 2">
-        </div>
-        <div class="text-center">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(2)">Button 3</button>
-            <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 3">
-        </div>
-        <div class="text-center">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(3)">Button 4</button>
-            <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 4">
-        </div>
-        <div class="text-center">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(4)">Button 5</button>
-            <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 5">
-        </div>
-        <div class="text-center">
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(5)">Button 6</button>
-            <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 6">
+    <div class="flex justify-center mb-8">
+        <div class="w-3/4 flex justify-between items-center space-x-4">
+            <div class="text-center">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(0)">Button 1</button>
+            </div>
+            <div class="text-center">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(1)">Button 2</button>
+            </div>
+            <div class="text-center">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(2)">Button 3</button>
+                <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 3" id="first-n">
+            </div>
+            <div class="text-center">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(3)">Button 4</button>
+                <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 4" id="last-n">
+            </div>
+            <div class="text-center">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(4)">Button 5</button>
+            </div>
+            <div class="text-center">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="changeTable(5)">Button 6</button>
+            </div>
         </div>
     </div>
-    <div id="table-container" class="bg-white p-4 rounded shadow-md">
+    <div id="table-container" class="bg-white p-4 rounded shadow-md w-3/4 mx-auto">
         <!-- Table will be inserted here dynamically -->
     </div>
+    <script src="../js/script.js"></script>
 </body>
 </html>
