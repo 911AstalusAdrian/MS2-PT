@@ -78,7 +78,7 @@ function changeTable(buttonIndex) {
                 tableHTML += rows;
                 break;
             case 4:
-                header = '<tr class="border-2"><th>Column</th><th>Count</th><th>Unique</th><th>Top</th><th>Frequency</th></tr>';
+                header = '<tr class="border-2"><th>Column</th><th>Count</th><th>Mean</th><th>Std</th><th>Min</th><th>25%</th><th>50%</th><th>75%</th><th>Max</th></tr>';
                 rows = '';
                 for (index in data) {
                     rows += '<tr><td class="border text-center">' + index + '</td>'
