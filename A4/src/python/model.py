@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import json
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
@@ -8,14 +9,17 @@ from sklearn.linear_model import LinearRegression
 def load_data():
     return pd.read_csv('../../dataset.csv')
 
+def load_model():
+    return pickle.load(open('trained_model.sav', 'rb'))
+
 class Model:
     def __init__(self):
-        self.__model = LinearRegression()
+        self.__model = load_model()
         self.__data = load_data()
-        self.__modelData = load_data()
-        self.__y = self.__data['2022']
-        self.__X = self.__modelData.drop(columns=['Country', '2022'])
-        self.__model.fit(self.__X, self.__y)
+        # self.__modelData = load_data()
+        # self.__y = self.__data['2022']
+        # self.__X = self.__modelData.drop(columns=['Country', '2022'])
+        # self.__model.fit(self.__X, self.__y)
 
     def get_shape(self):
         shape = self.__data.shape
