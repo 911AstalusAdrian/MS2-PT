@@ -7,31 +7,50 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.cluster import KMeans
 import io
+from model import Model
 
 app = Flask(__name__)
 CORS(app)
-data = None
+model = Model()
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload_csv():
-
-    print('-----------------UPLOAD-----------------')
-
-    global data
     file = request.files['file']
-    print(file)
     if not file:
-        return "No file", 400
+        return {"No file": 400}
+    
     data = pd.read_csv(io.StringIO(file.stream.read().decode('UTF-8')))
-    response = {
-        "rows": data.shape[0],
-        "cols": data.shape[1],
-        "columns": data.columns.tolist(),
-        "first_rows": data.head().to_dict(orient='records'),
-        "last_rows": data.tail().to_dict(orient='records'),
-        "stats": data.describe().to_dict()
-    }
-    return jsonify(response)
+    model.set_dataframe(data)
+    return {'Data uploaded': 200}
+
+@app.route('/shape')
+def shape():
+    return model.get_shape()
+
+@app.route('/columns')
+def columns():
+    return model.get_column_details()
+
+@app.route('/first', methods=['GET'])
+def first():
+    n = int(request.args.get('n', 5))
+    return model.get_firstN(n)
+
+@app.route('/last', methods=['GET'])
+def last():
+    n = int(request.args.get('n', 5))
+    return model.get_lastN(n)
+
+@app.route('/info')
+def info():
+    return model.get_statistics()
+
+
+
+# @app.route('/predict', methods=['POST', 'GET'])
+# def predict():
+#     gdpValues = request.json['gdpValues']
+#     return model.predict(gdpValues)
 
 @app.route('/remove_empty', methods=['POST'])
 def remove_empty_rows():

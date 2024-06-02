@@ -1,3 +1,164 @@
+
+function uploadCSV() {
+    const fileInput = document.getElementById('csvFile');
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    fetch('http://127.0.0.1:5000/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('uploadButton').classList.add('hidden');
+        document.getElementById('additionalButtons').classList.remove('hidden');
+        document.getElementById('tableContainer').classList.remove('hidden');
+    })
+    .catch(error => console.error('Error uploading CSV:', error));
+    // TODO: Display error message on page when upload fails
+}
+
+function getDataShape() {
+
+    const tableContainer = document.getElementById('tableContainer');
+    tableContainer.innerHTML = '';
+
+    fetch('http://127.0.0.1:5000/shape')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Getting data shape...');
+        let tableHTML = '<table class="table-auto w-full border-collapse border border-gray-400 ">';
+        tableHTML += '<tr><th>Rows</th><th>Columns</th></tr>';
+        tableHTML += '<tr><td class="border px-4 py-2">' + data.rows + '</td><td class="border px-4 py-2">' + data.columns + '</td></tr>';
+        tableHTML += '</table>';
+        tableContainer.innerHTML = tableHTML;
+    })
+}
+
+function getColumnDetails(){
+
+    const tableContainer = document.getElementById('tableContainer');
+    tableContainer.innerHTML = '';
+
+    fetch('http://127.0.0.1:5000/columns')
+    .then(response => response.json())
+    .then(data => {
+    
+        console.log('Getting column details...');
+        let tableHTML = '<table class="table-auto w-full border-collapse border border-gray-400 ">';
+        tableHTML += '<tr><th>Columns</th><th>Data Type</th></tr>';
+        columns = data.Columns;
+        types = data.Type; 
+        columns.forEach((column, index) => {
+            tableHTML += '<tr><td class="border px-4 py-2">' + column + '</td><td class="border px-4 py-2">' + types[index] + '</td></tr>';
+        });
+        tableHTML += '</table>';
+        tableContainer.innerHTML = tableHTML;
+    })
+}
+
+function getFirstN(){
+
+    const tableContainer = document.getElementById('tableContainer');
+    tableContainer.innerHTML = '';
+    tableHTML = '<table class="table-auto w-full border-collapse border border-gray-400 ">';
+
+    let firstN = document.getElementById('first-n').value || 5;
+    let rows = '';
+    let headers = '<tr>';
+
+    fetch(`http://127.0.0.1:5000/first?n=${firstN}`)
+    .then(response => response.json())
+    .then(data => {
+
+              // Extract the rows from the data
+              const rows = data.map(row => {
+                let rowData = '<tr>';
+                Object.values(row).forEach(value => {
+                    rowData += '<td>' + value + '</td>';
+                });
+                rowData += '</tr>';
+                return rowData;
+            });
+    
+            // Construct the table HTML
+            tableHTML += '<thead><tr>';
+            Object.keys(data[0]).forEach(key => {
+                tableHTML += '<th>' + key + '</th>';
+            });
+            tableHTML += '</tr></thead>';
+            tableHTML += '<tbody>';
+            tableHTML += rows.join('');
+            tableHTML += '</tbody>';
+            tableHTML += '</table>';
+    
+            // Update the table container with the constructed HTML
+            tableContainer.innerHTML = tableHTML;
+
+        // Object.keys(data).forEach(key => {
+            
+        //     headers += '<th>' + key + '</th>';
+        //     let row = '<tr>'
+
+        //     values = data[key];
+        //     console.log(values);
+
+        //     Object.values(values).forEach(value => {
+        //         row += '<td>' + value + '</td>';
+        //     })
+        //     row += '</tr>';
+        //     rows += row;
+        // });
+
+        // headers += '</tr>';
+        // tableHTML += headers;
+        // tableHTML += rows;
+        // tableHTML += '</table>';
+        // tableContainer.innerHTML = tableHTML;
+
+
+        // data = JSON.parse(data);
+
+        // console.log('Getting first N rows...');
+        // const table = document.createElement('table');
+        // table.className = 'table-auto w-full border-collapse border border-gray-200';
+
+        // // Create table header
+        // const thead = document.createElement('thead');
+        // const headerRow = document.createElement('tr');
+        // Object.keys(data).forEach(key => {
+        //     const th = document.createElement('th');
+        //     th.className = 'border px-4 py-2';
+        //     th.textContent = key;
+        //     headerRow.appendChild(th);
+        // });
+        // thead.appendChild(headerRow);
+        // table.appendChild(thead);
+
+        // // Create table body
+        // const tbody = document.createElement('tbody');
+        // data.forEach(rowData => {
+        //     const row = document.createElement('tr');
+        //     Object.values(rowData).forEach(value => {
+        //         const cell = document.createElement('td');
+        //         cell.className = 'border px-4 py-2';
+        //         cell.textContent = value;
+        //         row.appendChild(cell);
+        //     });
+        //     tbody.appendChild(row);
+        // });
+        // table.appendChild(tbody);
+
+        // tableContainer.appendChild(table);
+    })
+}
+
+function getLastN(){}
+
+function getTableInfo(){}
+ 
+
 function changeTable(buttonIndex) {
     const tableContainer = document.getElementById('table-container');
     tableContainer.innerHTML = '';

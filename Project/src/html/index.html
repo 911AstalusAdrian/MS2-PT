@@ -8,13 +8,43 @@
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">CSV Data Processor and Model Trainer</h1>
-        <div class="mb-4">
+        <div class="mb-4" id = 'uploadButton'>
             <h2 class="text-xl font-semibold">Upload CSV File</h2>
             <input type="file" id="csvFile" accept=".csv" class="border border-gray-300 rounded p-2">
             <button onclick="uploadCSV()" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Upload</button>
         </div>
-        <div class="mb-4 hidden" id="datasetInfo">
+
+
+        <div class="flex justify-center mb-8 hidden" id="additionalButtons">
+            <div class="w-3/4 flex justify-between items-center space-x-4">
+                <div class="text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="getDataShape()">Shape</button>
+                </div>
+                <div class="text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="getColumnDetails()">Column Details</button>
+                </div>
+                <div class="text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="getFirstN()">First N</button>
+                    <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 3" id="first-n">
+                </div>
+                <div class="text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="getLastN()">Last N</button>
+                    <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 4" id="last-n">
+                </div>
+                <div class="text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="getTableInfo()">Info</button>
+                </div>
+                <div class="text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="showPredictor()">Predict</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tableContainer" class="bg-white p-4 rounded shadow-md w-4/5 mx-auto hidden">
+        </div>
+
+
+        <!-- <div class="mb-4 hidden" id="datasetInfo">
             <h2 class="text-xl font-semibold">Dataset Information</h2>
             <p id="numRowsCols"></p>
             <p id="columnNames"></p>
@@ -42,8 +72,8 @@
             <div id="predictionForm" class="mb-2"></div>
             <button onclick="makePrediction()" class="bg-orange-500 text-white px-4 py-2 rounded mt-2">Predict</button>
             <div id="predictionResult" class="mt-4"></div>
-        </div>
+        </div> -->
     </div>
-    <script src="../js/test.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>
