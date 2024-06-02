@@ -136,7 +136,47 @@ function getLastN(){
     })
 }
 
-function getTableInfo(){}
+function getTableInfo(){
+    const tableContainer = document.getElementById('tableContainer');
+    tableContainer.innerHTML = '';
+    tableHTML = '<table class="table-auto w-full border-collapse border border-gray-400 ">';
+    let header = '<tr>';
+    let rows = '';
+
+    fetch('http://127.0.0.1:5000/info')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Getting table info...');
+
+        headers = Object.keys(data);
+        secondHeaders = Object.keys(data[headers[0]]);
+    
+        console.log(headers);
+        console.log(secondHeaders);
+
+
+        header += '<th>Column</th>';
+        secondHeaders.forEach(h => {
+            header += '<th>' + h + '</th>';
+        })
+        header += '</tr>';
+
+
+
+        rows = '';
+        for (index in data) {
+            rows += '<tr><td class="border text-center">' + index + '</td>'
+            values = data[index]
+            for (value_key in values) {
+                rows += '<td class="border text-center">' + values[value_key] + '</td>';
+            }
+        }
+        tableHTML += header;
+        tableHTML += rows;
+        tableHTML += '</table>';
+        tableContainer.innerHTML = tableHTML;
+    })
+}
  
 
 function changeTable(buttonIndex) {
