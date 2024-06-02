@@ -1,4 +1,3 @@
-
 function uploadCSV() {
     const fileInput = document.getElementById('csvFile');
     const file = fileInput.files[0];
@@ -16,7 +15,8 @@ function uploadCSV() {
         document.getElementById('additionalButtons').classList.remove('hidden');
         document.getElementById('tableContainer').classList.remove('hidden');
 
-        const columnsSelect = document.getElementById('columnsGroup')
+        const columnsSelect = document.getElementById('columnsSelect')
+        // console.log('Columns:', columns);
         columns.forEach(column => {
             const option = document.createElement('option');
             option.value = column;
@@ -191,6 +191,44 @@ function removeEmptyRows(){
     })
 }
 
+function setFeatures(){
+    features = []
+    const columnsSelect = document.getElementById('columnsSelect');
+    const selectedColumn = columnsSelect.selectedOptions
+    for (let i = 0; i < selectedColumn.length; i++) {
+        features.push(selectedColumn[i].value);
+    }
+    
+    
+    fetch('http://127.0.0.1:5000/features', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'features': features
+        })
+    })
+    .then(
+        alert('Features set successfully')
+    )
+}
+
+function trainModel(){
+
+    model_type = document.getElementById('algorithmSelect').value;
+    console.log('Model type:', model_type);
+
+    fetch('http://127.0.0.1:5000/train',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'model_type': model_type
+        })
+    })
+}
 
 function showPredictor(){
     const tableContainer = document.getElementById('table-container');

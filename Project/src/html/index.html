@@ -40,64 +40,32 @@
 
             <div class="w=3/4 flex items-center justify-between space-y-4">
                 <div class="text-center">
-                    <label for="'columns">Choose columns: </label>
+                    <label for="columns">Choose columns: </label>
                     <select name="columns" id="columnsSelect" class="p-2 border rounded" multiple>
-                        <optgroup label="Columns", id="columnsGroup"></optgroup>
                     </select>
                 </div>
                 <div class="text-center">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="">Option 2</button>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="setFeatures()">Set feature columns</button>
                 </div>
                 <div class="text-center">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="">Option 3</button>
-                    <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 3" id="first-n">
+                    <label for="algorithm">Choose algorithm: </label>
+                    <select name="algorithm" id="algorithmSelect" class="p-2 border rounded">
+                        <option value="regression">Regression</option>
+                        <option value="classification">Classification</option>
+                        <option value="clustering">Clustering</option>
+                    </select>
                 </div>
                 <div class="text-center">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="getLastN()">Last N</button>
-                    <input type="text" class="mt-2 p-2 border rounded w-full" placeholder="Input 4" id="last-n">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="">Normalize</button>
                 </div>
                 <div class="text-center">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="getTableInfo()">Info</button>
-                </div>
-                <div class="text-center">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="removeEmptyRows()">Clean</button>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="trainModel()">Train</button>
                 </div>
             </div>
         </div>
 
         <div id="tableContainer" class="bg-white p-4 rounded shadow-md w-4/5 mx-auto hidden">
         </div>
-
-
-        <!-- <div class="mb-4 hidden" id="datasetInfo">
-            <h2 class="text-xl font-semibold">Dataset Information</h2>
-            <p id="numRowsCols"></p>
-            <p id="columnNames"></p>
-            <h3 class="text-lg font-semibold mt-2">First N Rows</h3>
-            <table id="firstRows" class="table-auto w-full border-collapse border border-gray-200"></table>
-            <h3 class="text-lg font-semibold mt-2">Last N Rows</h3>
-            <table id="lastRows" class="table-auto w-full border-collapse border border-gray-200"></table>
-            <h3 class="text-lg font-semibold mt-2">Basic Statistics</h3>
-            <pre id="basicStats" class="bg-gray-100 p-2 rounded"></pre>
-            <button onclick="removeEmptyRows()" class="bg-red-500 text-white px-4 py-2 rounded mt-2">Remove Empty Rows</button>
-        </div>
-        <div class="mb-4 hidden" id="featureSelection">
-            <h2 class="text-xl font-semibold">Select Features</h2>
-            <div id="features" class="flex flex-wrap"></div>
-            <button onclick="transformData()" class="bg-green-500 text-white px-4 py-2 rounded mt-2">Transform Data</button>
-        </div>
-        <div class="mb-4 hidden" id="modelTraining">
-            <h2 class="text-xl font-semibold">Train Models</h2>
-            <button onclick="trainRegression()" class="bg-purple-500 text-white px-4 py-2 rounded mt-2">Train Regression Model</button>
-            <button onclick="trainClassification()" class="bg-purple-500 text-white px-4 py-2 rounded mt-2 ml-2">Train Classification Model</button>
-            <button onclick="trainClustering()" class="bg-purple-500 text-white px-4 py-2 rounded mt-2 ml-2">Train Clustering Model</button>
-        </div>
-        <div class="mb-4 hidden" id="modelPrediction">
-            <h2 class="text-xl font-semibold">Make a Prediction</h2>
-            <div id="predictionForm" class="mb-2"></div>
-            <button onclick="makePrediction()" class="bg-orange-500 text-white px-4 py-2 rounded mt-2">Predict</button>
-            <div id="predictionResult" class="mt-4"></div>
-        </div> -->
     </div>
     <script src="../js/script.js"></script>
 </body>

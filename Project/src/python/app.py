@@ -48,79 +48,18 @@ def info():
 @app.route('/clean')
 def clean():
     return model.clean_data()
-    # return {'message': 'Data cleaned'}
 
+@app.route('/features', methods=['POST'])
+def set_features():
+    features = request.json['features']
+    model.set_features(features)
+    return "Features set"
 
-# @app.route('/predict', methods=['POST', 'GET'])
-# def predict():
-#     gdpValues = request.json['gdpValues']
-#     return model.predict(gdpValues)
-
-@app.route('/remove_empty', methods=['POST'])
-def remove_empty_rows():
-    global data
-    if data is None:
-        return "No data", 400
-    data.dropna(inplace=True)
-    return "Empty rows removed", 200
-
-@app.route('/transform', methods=['POST'])
-def transform_data():
-    global data
-    if data is None:
-        return "No data", 400
-    columns = request.json.get('columns', [])
-    data = pd.get_dummies(data, columns=columns)
-    scaler = StandardScaler()
-    data[data.columns] = scaler.fit_transform(data)
-    return "Data transformed", 200
-
-@app.route('/train_regression', methods=['POST'])
-def train_regression():
-    global data
-    if data is None:
-        return "No data", 400
-    X = data.drop('target_column', axis=1)  # Replace 'target_column' with your target column name
-    y = data['target_column']
-    model = LinearRegression()
-    model.fit(X, y)
-    # Save model or perform any other tasks
-    return "Regression model trained", 200
-
-@app.route('/train_classification', methods=['POST'])
-def train_classification():
-    global data
-    if data is None:
-        return "No data", 400
-    X = data.drop('target_column', axis=1)  # Replace 'target_column' with your target column name
-    y = data['target_column']
-    model = RandomForestClassifier()
-    model.fit(X, y)
-    # Save model or perform any other tasks
-    return "Classification model trained", 200
-
-@app.route('/train_clustering', methods=['POST'])
-def train_clustering():
-    global data
-    if data is None:
-        return "No data", 400
-    X = data.drop('target_column', axis=1)  # Replace 'target_column' with your target column name
-    model = KMeans(n_clusters=3)  # Example for 3 clusters
-    model.fit(X)
-    # Save model or perform any other tasks
-    return "Clustering model trained", 200
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    global data
-    if data is None:
-        return "No data", 400
-    input_data = request.json
-    input_df = pd.DataFrame([input_data])
-    # Assuming the model is saved and loaded, e.g., model = joblib.load('model.pkl')
-    # result = model.predict(input_df)
-    result = "example prediction"  # Placeholder
-    return jsonify({"result": result})
+@app.route('/train', methods=['GET', 'POST'])
+def train_model():
+    model_type = request.json['model_type']
+    model.train(model_type)
+    return "Model trained"
 
 if __name__ == '__main__':
     app.run(debug=True)
