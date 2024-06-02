@@ -1,13 +1,49 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../css/output.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Data Processor and Model Trainer</title>
+    <link href="../css/output.css" rel="stylesheet">
 </head>
-<body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-4">CSV Data Processor and Model Trainer</h1>
+        <div class="mb-4">
+            <h2 class="text-xl font-semibold">Upload CSV File</h2>
+            <input type="file" id="csvFile" accept=".csv" class="border border-gray-300 rounded p-2">
+            <button onclick="uploadCSV()" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Upload</button>
+        </div>
+        <div class="mb-4 hidden" id="datasetInfo">
+            <h2 class="text-xl font-semibold">Dataset Information</h2>
+            <p id="numRowsCols"></p>
+            <p id="columnNames"></p>
+            <h3 class="text-lg font-semibold mt-2">First N Rows</h3>
+            <table id="firstRows" class="table-auto w-full border-collapse border border-gray-200"></table>
+            <h3 class="text-lg font-semibold mt-2">Last N Rows</h3>
+            <table id="lastRows" class="table-auto w-full border-collapse border border-gray-200"></table>
+            <h3 class="text-lg font-semibold mt-2">Basic Statistics</h3>
+            <pre id="basicStats" class="bg-gray-100 p-2 rounded"></pre>
+            <button onclick="removeEmptyRows()" class="bg-red-500 text-white px-4 py-2 rounded mt-2">Remove Empty Rows</button>
+        </div>
+        <div class="mb-4 hidden" id="featureSelection">
+            <h2 class="text-xl font-semibold">Select Features</h2>
+            <div id="features" class="flex flex-wrap"></div>
+            <button onclick="transformData()" class="bg-green-500 text-white px-4 py-2 rounded mt-2">Transform Data</button>
+        </div>
+        <div class="mb-4 hidden" id="modelTraining">
+            <h2 class="text-xl font-semibold">Train Models</h2>
+            <button onclick="trainRegression()" class="bg-purple-500 text-white px-4 py-2 rounded mt-2">Train Regression Model</button>
+            <button onclick="trainClassification()" class="bg-purple-500 text-white px-4 py-2 rounded mt-2 ml-2">Train Classification Model</button>
+            <button onclick="trainClustering()" class="bg-purple-500 text-white px-4 py-2 rounded mt-2 ml-2">Train Clustering Model</button>
+        </div>
+        <div class="mb-4 hidden" id="modelPrediction">
+            <h2 class="text-xl font-semibold">Make a Prediction</h2>
+            <div id="predictionForm" class="mb-2"></div>
+            <button onclick="makePrediction()" class="bg-orange-500 text-white px-4 py-2 rounded mt-2">Predict</button>
+            <div id="predictionResult" class="mt-4"></div>
+        </div>
+    </div>
+    <script src="../js/test.js"></script>
 </body>
 </html>
