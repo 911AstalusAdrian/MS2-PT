@@ -71,90 +71,70 @@ function getFirstN(){
     fetch(`http://127.0.0.1:5000/first?n=${firstN}`)
     .then(response => response.json())
     .then(data => {
+        dataHeaders = Object.keys(data); // Get the headers of the data
+        dataLen = dataHeaders[0].length;
+        keys = Object.keys(data[dataHeaders[0]]);
 
-              // Extract the rows from the data
-              const rows = data.map(row => {
-                let rowData = '<tr>';
-                Object.values(row).forEach(value => {
-                    rowData += '<td>' + value + '</td>';
-                });
-                rowData += '</tr>';
-                return rowData;
-            });
-    
-            // Construct the table HTML
-            tableHTML += '<thead><tr>';
-            Object.keys(data[0]).forEach(key => {
-                tableHTML += '<th>' + key + '</th>';
-            });
-            tableHTML += '</tr></thead>';
-            tableHTML += '<tbody>';
-            tableHTML += rows.join('');
-            tableHTML += '</tbody>';
-            tableHTML += '</table>';
-    
-            // Update the table container with the constructed HTML
-            tableContainer.innerHTML = tableHTML;
-
-        // Object.keys(data).forEach(key => {
-            
-        //     headers += '<th>' + key + '</th>';
-        //     let row = '<tr>'
-
-        //     values = data[key];
-        //     console.log(values);
-
-        //     Object.values(values).forEach(value => {
-        //         row += '<td>' + value + '</td>';
-        //     })
-        //     row += '</tr>';
-        //     rows += row;
-        // });
-
-        // headers += '</tr>';
-        // tableHTML += headers;
-        // tableHTML += rows;
-        // tableHTML += '</table>';
-        // tableContainer.innerHTML = tableHTML;
+        Object.keys(data).forEach(key => {
+            headers += '<th>' + key + '</th>';
+        }); // Create the headers of the table
 
 
-        // data = JSON.parse(data);
+        keys.forEach(key => {
+            let row = '<tr>';
+            dataHeaders.forEach(header => {
+                row += '<td>' + data[header][key] + '</td>';
+            })
+            row += '</tr>';
+            rows += row;
+        });
 
-        // console.log('Getting first N rows...');
-        // const table = document.createElement('table');
-        // table.className = 'table-auto w-full border-collapse border border-gray-200';
-
-        // // Create table header
-        // const thead = document.createElement('thead');
-        // const headerRow = document.createElement('tr');
-        // Object.keys(data).forEach(key => {
-        //     const th = document.createElement('th');
-        //     th.className = 'border px-4 py-2';
-        //     th.textContent = key;
-        //     headerRow.appendChild(th);
-        // });
-        // thead.appendChild(headerRow);
-        // table.appendChild(thead);
-
-        // // Create table body
-        // const tbody = document.createElement('tbody');
-        // data.forEach(rowData => {
-        //     const row = document.createElement('tr');
-        //     Object.values(rowData).forEach(value => {
-        //         const cell = document.createElement('td');
-        //         cell.className = 'border px-4 py-2';
-        //         cell.textContent = value;
-        //         row.appendChild(cell);
-        //     });
-        //     tbody.appendChild(row);
-        // });
-        // table.appendChild(tbody);
-
-        // tableContainer.appendChild(table);
+        headers += '</tr>';
+        tableHTML += headers;
+        tableHTML += rows;
+        tableHTML += '</table>';
+        tableContainer.innerHTML = tableHTML;
     })
 }
 
-function getLastN(){}
+function getLastN(){
+    
+    const tableContainer = document.getElementById('tableContainer');
+    tableContainer.innerHTML = '';
+    tableHTML = '<table class="table-auto w-full border-collapse border border-gray-400 ">';
+
+    let lastN = document.getElementById('last-n').value || 5;
+    let rows = '';
+    let headers = '<tr>';
+
+    fetch(`http://127.0.0.1:5000/last?n=${lastN}`)
+    .then(response => response.json())
+    .then(data => {
+        dataHeaders = Object.keys(data); // Get the headers of the data
+        dataLen = dataHeaders[0].length;
+        keys = Object.keys(data[dataHeaders[0]]);
+
+        Object.keys(data).forEach(key => {
+            headers += '<th>' + key + '</th>';
+        }); // Create the headers of the table
+
+
+        keys.forEach(key => {
+            let row = '<tr>';
+            dataHeaders.forEach(header => {
+                row += '<td>' + data[header][key] + '</td>';
+            })
+            row += '</tr>';
+            rows += row;
+        });
+
+        headers += '</tr>';
+        tableHTML += headers;
+        tableHTML += rows;
+        tableHTML += '</table>';
+        tableContainer.innerHTML = tableHTML;
+    })
+}
 
 function getTableInfo(){}
  
