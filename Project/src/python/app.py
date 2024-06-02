@@ -21,7 +21,7 @@ def upload_csv():
     
     data = pd.read_csv(io.StringIO(file.stream.read().decode('UTF-8')))
     model.set_dataframe(data)
-    return {'Data uploaded': 200}
+    return {'columns': data.columns.tolist()}
 
 @app.route('/shape')
 def shape():
@@ -45,6 +45,10 @@ def last():
 def info():
     return model.get_statistics()
 
+@app.route('/clean')
+def clean():
+    return model.clean_data()
+    # return {'message': 'Data cleaned'}
 
 
 # @app.route('/predict', methods=['POST', 'GET'])

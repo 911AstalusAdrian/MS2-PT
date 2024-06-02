@@ -31,3 +31,9 @@ class Model:
     def get_statistics(self):
         statistics = self.__data.describe()
         return json.dumps(statistics.to_dict())
+    
+    def clean_data(self):
+        rows_before = self.__data.shape[0]
+        self.__data.dropna(inplace=True)
+        rows_after = self.__data.shape[0]
+        return {'removed_rows': rows_before - rows_after}
