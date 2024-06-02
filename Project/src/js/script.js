@@ -150,18 +150,12 @@ function getTableInfo(){
 
         headers = Object.keys(data);
         secondHeaders = Object.keys(data[headers[0]]);
-    
-        console.log(headers);
-        console.log(secondHeaders);
-
 
         header += '<th>Column</th>';
         secondHeaders.forEach(h => {
             header += '<th>' + h + '</th>';
         })
         header += '</tr>';
-
-
 
         rows = '';
         for (index in data) {
