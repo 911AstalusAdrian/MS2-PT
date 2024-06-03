@@ -61,5 +61,9 @@ def train_model():
     model.train(model_type)
     return "Model trained"
 
+@app.route('/normalize')
+def normalize():
+    return model.normalize_data()
+
 if __name__ == '__main__':
     app.run(debug=True)

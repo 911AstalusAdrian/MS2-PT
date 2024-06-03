@@ -230,6 +230,11 @@ function trainModel(){
     })
 }
 
+function normalizeData(){
+    fetch('http://127.0.0.1:5000/normalize')
+}
+
+
 function showPredictor(){
     const tableContainer = document.getElementById('table-container');
     tableContainer.innerHTML = '';

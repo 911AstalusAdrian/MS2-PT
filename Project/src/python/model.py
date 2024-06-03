@@ -2,6 +2,7 @@ import json
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 import pandas as pd
 
 class Model:
@@ -9,6 +10,8 @@ class Model:
         self.__data = None
         self.__features = []
         self.__model = None
+        self.__encoder = OrdinalEncoder()
+        self.__scaler = StandardScaler()
 
     def set_dataframe(self, dataframe):
         self.__data = dataframe
@@ -59,10 +62,6 @@ class Model:
 
         y = self.__data[self.__features]
 
-
-        print(X.head())
-        print(y.head())
-
         if model_type == 'regression':
             self.__model = LinearRegression()
         elif model_type == 'classification':
@@ -73,3 +72,12 @@ class Model:
             raise ValueError('Invalid model type')
 
         self.__model.fit(X, y)
+
+    def normalize_data(self):
+        categorical_columns = self.__data.select_dtypes(include=['object']).columns.tolist()
+        numerical_columns = self.__data.select_dtypes(include=['number']).columns.tolist()
+
+        self.__data[categorical_columns] = self.__encoder.fit_transform(self.__data[categorical_columns])
+        self.__data[numerical_columns] = self.__scaler.fit_transform(self.__data[numerical_columns])
+
+        return 'Normalized'
