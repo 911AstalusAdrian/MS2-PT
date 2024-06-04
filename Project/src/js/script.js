@@ -232,6 +232,7 @@ function trainModel(){
 
 function normalizeData(){
     fetch('http://127.0.0.1:5000/normalize')
+    .then(console.log('Data normalized successfully'))
 }
 
 
@@ -247,42 +248,4 @@ function showPredictor(){
         <span id="resultText" class="result-text"></span>\
     </div>';
     tableContainer.innerHTML = predictorHTML;
-}
-
-function predictGDP() {
-    let apiURL = 'http://127.0.0.1:5000/predict';
-
-    gdpValues = document.getElementById('gdpInput').value;
-    if (!validGdpString(gdpValues)) {
-        document.getElementById('resultText').innerText = 'Invalid input. Please enter valid GDP values separated by commas';
-        return;
-    }
-
-
-    fetch(apiURL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            'gdpValues': document.getElementById('gdpInput').value.split(',')
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        // console.log('Data:', data);
-        document.getElementById('resultText').innerText = data.prediction;
-    })
-}
-
-function validGdpString(gdpString) {
-    const gdpValues = gdpString.split(',');
-    
-    if (gdpValues.length != 22) return false;
-    else {
-        for (let i = 0; i < gdpValues.length; i++) {
-            if (isNaN(gdpValues[i])) return false;
-        }
-    }
-    return true;
 }

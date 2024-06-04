@@ -74,10 +74,12 @@ class Model:
         self.__model.fit(X, y)
 
     def normalize_data(self):
-        categorical_columns = self.__data.select_dtypes(include=['object']).columns.tolist()
-        numerical_columns = self.__data.select_dtypes(include=['number']).columns.tolist()
+        try:
+            categorical_columns = self.__data.select_dtypes(include=['object']).columns.tolist()
+            numerical_columns = self.__data.select_dtypes(include=['number']).columns.tolist()
 
-        self.__data[categorical_columns] = self.__encoder.fit_transform(self.__data[categorical_columns])
-        self.__data[numerical_columns] = self.__scaler.fit_transform(self.__data[numerical_columns])
-
+            self.__data[categorical_columns] = self.__encoder.fit_transform(self.__data[categorical_columns])
+            self.__data[numerical_columns] = self.__scaler.fit_transform(self.__data[numerical_columns])
+        except ValueError:
+            return 'Normalization issues'
         return 'Normalized'
