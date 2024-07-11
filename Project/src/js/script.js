@@ -24,7 +24,10 @@ function uploadCSV() {
             columnsSelect.appendChild(option);
         });
     })
-    .catch(error => console.error('Error uploading CSV:', error));
+    .catch(error => {
+        console.error('Error uploading CSV:', error)
+        alert('Error uploading CSV. Try again.');
+    });
     // TODO: Display error message on page when upload fails
 }
 
@@ -228,24 +231,57 @@ function trainModel(){
             'model_type': model_type
         })
     })
+    .then(response => response.json())
+    .then(data => {
+        err = data['error_yn']
+        if (err == 1) {
+            console.log(data['message'])
+            alert('Training error: ' + data['message'])}
+        else{
+            console.log('Model trained successfully')
+            alert('Model trained successfully')
+        }
+    })
 }
 
 function normalizeData(){
     fetch('http://127.0.0.1:5000/normalize')
-    .then(console.log('Data normalized successfully'))
+    .then(response => response.json())
+    .then(data => {
+        err = data['error_yn']
+        if (err == 1) {
+            alert('Normalization erorr: ' + data['message'])}
+        else{
+            alert('Data normalized successfully')
+        }
+    })
+    .catch(error => {
+        alert(error)
+    })
 }
 
 
-function showPredictor(){
-    const tableContainer = document.getElementById('table-container');
-    tableContainer.innerHTML = '';
-    let predictorHTML = '\
-    <div class="input-container flex items-center mb-6">\
-        <input type="text" id="gdpInput" class="input-field py-2 px-4 border border-gray-300 rounded mr-2" placeholder="Enter GDP values separated by commas">\
-        <button id="predictButton" class="predict-button py-2 px-4 bg-blue-500 text-white font-semibold rounded" onclick="predictGDP()">Predict</button>\
-    </div>\
-    <div class="result-box w-64 h-16 flex items-center justify-center border border-gray-300 rounded">\
-        <span id="resultText" class="result-text"></span>\
-    </div>';
-    tableContainer.innerHTML = predictorHTML;
+function predict(){
+
+    input = document.getElementById('prediction').value.split(',');
+
+    fetch('http://127.0.0.1:5000/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'input_data': input
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        type = data['model_type']
+        if (type == 'clustering'){
+            cluster = data['cluster']
+            alert('Predicted cluster: ' + cluster)
+        }
+        else
+        alert('Prediction: ' + data['prediction']);
+    })
 }

@@ -55,15 +55,21 @@ def set_features():
     model.set_features(features)
     return "Features set"
 
-@app.route('/train', methods=['GET', 'POST'])
-def train_model():
-    model_type = request.json['model_type']
-    model.train(model_type)
-    return "Model trained"
-
 @app.route('/normalize')
 def normalize():
     return model.normalize_data()
+
+@app.route('/train', methods=['GET', 'POST'])
+def train_model():
+    model_type = request.json['model_type']
+    return model.train(model_type)
+
+@app.route('/predict', methods=['GET', 'POST'])
+def predict():
+    input_data = request.json['input_data']
+    print(input_data)
+    return model.predict(input_data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
